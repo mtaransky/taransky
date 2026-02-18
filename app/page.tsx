@@ -50,4 +50,65 @@ export default function Chat() {
                   : `SUBJECT [${i + 1}]`}
               </div>
 
-              <div className="text-base leading-8 whitespace-
+              <div className="text-base leading-8 whitespace-pre-wrap">
+                {message.content}
+              </div>
+            </div>
+          ))}
+      </div>
+
+      {/* Example Prompts (Footnote Style) */}
+      {messages.length === 0 && (
+        <div className="max-w-2xl mx-auto px-8 mt-16 border-t border-black pt-10">
+          {examples.map((example, i) => (
+            <div
+              key={i}
+              className="text-sm leading-7 cursor-pointer hover:underline mb-6"
+              onClick={() => {
+                setInput(example);
+                inputRef.current?.focus();
+              }}
+            >
+              [{i + 1}] {example}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Input Area */}
+      <div className="mt-24 border-t border-black py-12">
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="max-w-2xl mx-auto px-8"
+        >
+          <Textarea
+            ref={inputRef}
+            tabIndex={0}
+            required
+            rows={1}
+            autoFocus
+            placeholder="Begin interview..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                formRef.current?.requestSubmit();
+                e.preventDefault();
+              }
+            }}
+            spellCheck={false}
+            className="w-full resize-none border-none outline-none text-base leading-8"
+          />
+
+          <button
+            disabled={disabled}
+            className="mt-8 text-sm tracking-widest uppercase"
+          >
+            {isLoading ? "Responding…" : "Submit"}
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+}
