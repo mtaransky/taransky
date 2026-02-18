@@ -14,9 +14,9 @@ import Textarea from "react-textarea-autosize";
 import Image from "next/image";
 
 const examples = [
-  "Example 1",
-  "Example 2",
-  "Example 3",
+  "When you tell this story about her, who do you imagine is listening—and what do you hope they’ll think of you?",
+  "You say the culture is obsessed with efficiency. What, exactly, do you gain from positioning yourself as inefficient?",
+  "You insist that slowness and waste are essential to art — but how do you tell the difference between principled resistance and simply refusing to adapt?",
 ];
 
 export default function Chat() {
